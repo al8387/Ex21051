@@ -20,6 +20,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Activity for adding and editing expenses.
+ *
+ * @author Adam
+ * @version 1.0
+ * @since 2026
+ */
 public class Input extends AppCompatActivity {
 
     private EditText etExpenseDesc, etExpenseAmount, etExpenseDate;
@@ -90,14 +97,18 @@ public class Input extends AppCompatActivity {
                 return;
             }
 
-            double amount = Double.parseDouble(amountStr);
+            try {
+                double amount = Double.parseDouble(amountStr);
 
-            if (updateId != null) {
-                fbHelper.updateExpense(updateId, desc, amount, category, date, recurring);
-            } else {
-                fbHelper.addExpense(desc, amount, category, date, recurring);
+                if (updateId != null) {
+                    fbHelper.updateExpense(updateId, desc, amount, category, date, recurring);
+                } else {
+                    fbHelper.addExpense(desc, amount, category, date, recurring);
+                }
+                finish();
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
             }
-            finish();
         });
     }
 
@@ -106,7 +117,10 @@ public class Input extends AppCompatActivity {
         popup.getMenu().add("Home"); popup.getMenu().add("Display");
         popup.getMenu().add("Search"); popup.getMenu().add("Credits");
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
+            CharSequence titleSeq = item.getTitle();
+            if (titleSeq == null) return false;
+            String title = titleSeq.toString();
+
             if (title.equals("Home")) startActivity(new Intent(this, MainActivity.class));
             else if (title.equals("Display")) startActivity(new Intent(this, Display.class));
             else if (title.equals("Search")) startActivity(new Intent(this, Search.class));

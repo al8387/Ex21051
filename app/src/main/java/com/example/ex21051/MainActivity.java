@@ -16,6 +16,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
+/**
+ * Main Activity that displays the total monthly expenses and recent activity.
+ *
+ * @author Adam
+ * @version 1.0
+ * @since 2026
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvTotalAmount;
@@ -70,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
         popup.getMenu().add("Search");
         popup.getMenu().add("Credits");
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
+            CharSequence titleSeq = item.getTitle();
+            if (titleSeq == null) return false;
+            String title = titleSeq.toString();
             if (title.equals("Input")) startActivity(new Intent(this, Input.class));
             else if (title.equals("Display")) startActivity(new Intent(this, Display.class));
             else if (title.equals("Search")) startActivity(new Intent(this, Search.class));

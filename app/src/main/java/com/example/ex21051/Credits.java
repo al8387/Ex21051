@@ -7,6 +7,13 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Activity that displays credit information about the application's creators.
+ *
+ * @author Adam
+ * @version 1.0
+ * @since 2026
+ */
 public class Credits extends AppCompatActivity {
 
     @Override
@@ -24,7 +31,10 @@ public class Credits extends AppCompatActivity {
         popup.getMenu().add("Display");
         popup.getMenu().add("Search");
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
+            CharSequence titleSeq = item.getTitle();
+            if (titleSeq == null) return false;
+            String title = titleSeq.toString();
+
             if (title.equals("Home")) startActivity(new Intent(this, MainActivity.class));
             else if (title.equals("Display")) startActivity(new Intent(this, Display.class));
             else if (title.equals("Search")) startActivity(new Intent(this, Search.class));

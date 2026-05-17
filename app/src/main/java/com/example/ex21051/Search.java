@@ -19,6 +19,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Activity for searching and filtering expenses.
+ *
+ * @author Adam
+ * @version 1.0
+ * @since 2026
+ */
 public class Search extends AppCompatActivity {
 
     private Spinner spinnerFilterCategory, spinnerSortBy;
@@ -93,7 +100,10 @@ public class Search extends AppCompatActivity {
         popup.getMenu().add("Home"); popup.getMenu().add("Display");
         popup.getMenu().add("Input"); popup.getMenu().add("Credits");
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
+            CharSequence titleSeq = item.getTitle();
+            if (titleSeq == null) return false;
+            String title = titleSeq.toString();
+
             if (title.equals("Home")) startActivity(new Intent(this, MainActivity.class));
             else if (title.equals("Display")) startActivity(new Intent(this, Display.class));
             else if (title.equals("Input")) startActivity(new Intent(this, Input.class));
