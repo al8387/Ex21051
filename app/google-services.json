@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "672906041002",
+    "firebase_url": "https://ex21051-147cd-default-rtdb.firebaseio.com",
+    "project_id": "ex21051-147cd",
+    "storage_bucket": "ex21051-147cd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672906041002:android:4737582cf8f5db090e62d3",
+        "android_client_info": {
+          "package_name": "com.example.ex21051"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3YVFF9-FiPF24N-zjsABa2ddDd3-RL0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
